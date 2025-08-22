@@ -1,4 +1,4 @@
-// Last updated: 22/8/2025, 10:57:23 am
+// Last updated: 22/8/2025, 11:00:06 am
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -15,36 +15,23 @@
  * }
  */
 class Solution {
-    public int deepestLeavesSum(TreeNode root) {
-        List<List<Integer>> list = new ArrayList<>();
-        
-        int sum[] = {0} ;
-        levelorder(root ,list , sum);
-
-        // System.out.println( list[0]);
-        // for(int i = 0 ; i<  list.get(list.size()-1 ).size() ; i++ ){
-        //     sum+= list.get(list.size()-1 ).get(i);
-        // }
-        return sum[0] ;
-    }
-
-    public void levelorder( TreeNode root , List<List<Integer>> list , int[] sum){
+    public int deepestLeavesSum(TreeNode root) { 
+        int sum =0 ; 
         Queue<TreeNode> q = new LinkedList<>();
         q.add(root);
 
         while(!q.isEmpty()){
-            int size = q.size();
-            List<Integer> arr = new ArrayList<>();
-            sum[0]=0;
+            int size = q.size(); 
+            sum=0;
             for( int i = 0 ; i<size ; i++){
-                TreeNode n = q.poll();
-                arr.add(n.val);
-                sum[0]+=n.val;
+                TreeNode n = q.poll(); 
+                sum+=n.val;
                 if( n.left!=null) q.add(n.left);
                 if( n.right!=null) q.add(n.right);
-            }
-
-            list.add(arr);
+            } 
         }
+
+        return sum ;
     }
+ 
 }
