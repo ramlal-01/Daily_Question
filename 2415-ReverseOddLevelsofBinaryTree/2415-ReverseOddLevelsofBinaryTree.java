@@ -1,4 +1,4 @@
-// Last updated: 24/8/2025, 1:27:07 am
+// Last updated: 24/8/2025, 1:27:53 am
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -16,22 +16,24 @@
  */
 class Solution {
     public TreeNode reverseOddLevels(TreeNode root) {
-        dfs(root.left , root.right , 1 );
+
+        if(root == null)
         return root;
+        helper(root.left, root.right, 1);
+        return root;
+        
     }
 
-    public void dfs(TreeNode left , TreeNode right , int level){
-        if( left==null || right==null){
-            return ;
-        }
+    void helper(TreeNode left, TreeNode right, int l){
+        if(left == null || right == null) return;
 
-        if( level%2!=0){
+        if(l%2 == 1){
             int temp = left.val;
-            left.val = right.val;
-            right.val = temp ;
+            left.val =right.val;
+            right.val = temp;
         }
 
-        dfs(left.left , right.right , level+1);
-        dfs(left.right , right.left , level +1);
+        helper(left.left, right.right, l+1);
+        helper(left.right, right.left, l+1);
     }
 }
