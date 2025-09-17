@@ -1,4 +1,4 @@
-// Last updated: 17/9/2025, 5:25:04 pm
+// Last updated: 17/9/2025, 10:23:26 pm
 class Pair {
     int node;
     int dist;
@@ -52,7 +52,7 @@ class Solution {
                 int v = ele.node ;
                 int wt = ele.dist;
 
-                if( dis + wt < dist[v] && stops<=k){
+                if( dis + wt < dist[v]  ){
                     dist[v] = dis+wt ;
                     q.add( new tuple( stops+1 , v , dist[v]));
                 }
