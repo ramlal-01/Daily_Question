@@ -1,4 +1,4 @@
-// Last updated: 17/9/2025, 3:45:11 pm
+// Last updated: 17/9/2025, 3:47:21 pm
 class Pair{
     int dist ; 
     int row ; 
@@ -41,7 +41,7 @@ class Solution {
             int c = q.peek().col ;
             q.poll();
             
-            
+            if( r==n-1 && c==n-1) return dis;
             for( int k = 0 ; k<8 ; k++){
                 int nrow = r+ delrow[k];
                 int ncol = c+ delcol[k];
