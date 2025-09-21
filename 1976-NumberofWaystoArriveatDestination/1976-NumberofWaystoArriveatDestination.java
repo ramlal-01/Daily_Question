@@ -1,4 +1,4 @@
-// Last updated: 19/9/2025, 10:50:13 pm
+// Last updated: 21/9/2025, 8:41:43 pm
 class Pair{
     int first ;
     long second ; 
