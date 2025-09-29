@@ -1,4 +1,4 @@
-// Last updated: 29/9/2025, 8:31:24 pm
+// Last updated: 29/9/2025, 8:32:05 pm
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
         int rows = matrix.length;
