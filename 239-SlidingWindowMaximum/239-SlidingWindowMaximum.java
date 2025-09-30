@@ -1,35 +1,36 @@
-// Last updated: 29/9/2025, 1:22:36 am
+// Last updated: 30/9/2025, 12:42:34 pm
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
         Deque<Integer> dq = new ArrayDeque<>();
-
-        for( int i = 0 ; i< k ; i++){
-            while( !dq.isEmpty() && nums[dq.peekLast()]<=nums[i]){
+        int n = nums.length ;
+        for( int i =0 ; i< k ; i++){
+            while( !dq.isEmpty() && nums[dq.peekLast()]<= nums[i]){
                 dq.pollLast();
             }
             dq.offerLast(i);
         }
-        // System.out.println(dq);
-        ArrayList<Integer> list = new ArrayList<>();
-        
-        for( int i = k ; i<nums.length ; i++){
-            list.add( nums[dq.peekFirst()]);
 
-            while( !dq.isEmpty() && dq.peekFirst()<= i-k){
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for( int i= k ; i<n ; i++){
+            list.add( nums[dq.peekFirst()] );
+
+            while( !dq.isEmpty() && dq.peekFirst()<=i-k ){
                 dq.pollFirst();
             }
 
-            while( !dq.isEmpty() && nums[dq.peekLast()]<=nums[i]){
+            while( !dq.isEmpty() && nums[dq.peekLast()]<= nums[i]){
                 dq.pollLast();
             }
             dq.offerLast(i);
 
         }
-        list.add( nums[dq.peekFirst()]);
-        int arr[] = new int[list.size()];
-        int ind =0;
-        for( int ele : list){
-            arr[ind++]  = ele;
+
+        list.add( nums[dq.peekFirst()] );
+
+        int arr[] = new int[list.size() ];
+        for( int i= 0 ;i<arr.length ; i++){
+            arr[i] = list.get(i);
         }
         return arr;
     }
