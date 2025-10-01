@@ -1,4 +1,4 @@
-// Last updated: 1/10/2025, 8:10:29 am
+// Last updated: 1/10/2025, 8:25:10 am
 class Solution {
     public int characterReplacement(String s, int k) {
         int[] arr = new int[26];
@@ -6,8 +6,8 @@ class Solution {
         while (j < s.length()) {
             arr[s.charAt(j) - 'A']++;
             maxf = Math.max(maxf, arr[s.charAt(j) - 'A']);
-            while (j - i + 1 - maxf > k) {
-                arr[s.charAt(i) - 'A']--;
+            if((j-i+1)-maxf>k) {
+                arr[s.charAt(i)-'A']--;
                 i++;
             }
             ans = Math.max(ans, j - i + 1);
