@@ -1,18 +1,18 @@
-// Last updated: 30/9/2025, 11:20:25 pm
+// Last updated: 1/10/2025, 8:54:42 am
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
         if (s1.length() > s2.length()) return false;
         int[] a = new int[26];
         int[] b = new int[26];
         for (int i = 0; i < s1.length(); i++) {
-            a[s1.charAt(i) - 'a']++;
-            b[s2.charAt(i) - 'a']++;
+            a[s1.charAt(i)-'a']++;
+            b[s2.charAt(i)-'a']++;
         }
-        if (java.util.Arrays.equals(a, b)) return true;
-        for (int i = s1.length(); i < s2.length(); i++) {
+        if ( Arrays.equals(a, b)) return true;
+        for (int i=s1.length(); i<s2.length(); i++) {
             b[s2.charAt(i) - 'a']++;
             b[s2.charAt(i - s1.length()) - 'a']--;
-            if (java.util.Arrays.equals(a, b)) return true;
+            if ( Arrays.equals(a, b)) return true;
         }
         return false;
     }
