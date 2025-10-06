@@ -1,35 +1,24 @@
-// Last updated: 6/10/2025, 8:12:00 pm
+// Last updated: 6/10/2025, 8:12:54 pm
 class Solution {
     public int evalRPN(String[] tokens) {
-        Deque<String> st = new ArrayDeque<>();
- 
-        for( int i = 0 ; i<tokens.length ; i++){
+        Deque<Integer> st = new ArrayDeque<>();
 
-            if( !st.isEmpty() && tokens[i].equals("*")){
-                int a = Integer.parseInt(st.pop());
-                int b = Integer.parseInt(st.pop());
-                st.push( Integer.toString(a*b));
-                 
-            }
-            else if( !st.isEmpty() && tokens[i].equals("/") ){
-                int a = Integer.parseInt(st.pop());
-                int b = Integer.parseInt(st.pop());
-                st.push( Integer.toString(b/a));
-            }
-            else if(  !st.isEmpty() && tokens[i].equals("+")){
-                int a = Integer.parseInt(st.pop());
-                int b = Integer.parseInt(st.pop());
-                st.push(Integer.toString(a+b));
-            }
-            else if(  !st.isEmpty() && tokens[i].equals("-")){
-                int a = Integer.parseInt(st.pop());
-                int b = Integer.parseInt(st.pop());
-                st.push( Integer.toString(b-a));
-            }
-            else{
-                st.push(tokens[i]);
+        for (String token : tokens) {
+            if (token.equals("+")) {
+                st.push(st.pop() + st.pop());
+            } else if (token.equals("-")) {
+                int a = st.pop(), b = st.pop();
+                st.push(b - a);
+            } else if (token.equals("*")) {
+                st.push(st.pop() * st.pop());
+            } else if (token.equals("/")) {
+                int a = st.pop(), b = st.pop();
+                st.push(b / a);
+            } else {
+                st.push(Integer.parseInt(token));
             }
         }
-        return Integer.parseInt(st.pop());
+
+        return st.pop();
     }
 }
