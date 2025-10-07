@@ -1,11 +1,11 @@
-// Last updated: 7/10/2025, 6:49:01 am
+// Last updated: 7/10/2025, 6:49:18 am
 class Solution {
     public int countArrangement(int n) {
         List<List<Integer>> res = new ArrayList<>();
         boolean arr[] = new boolean[n+1];
         helper( n , res , new ArrayList<>() , arr , 1);
         
-        System.out.println(res);
+        // System.out.println(res);
         return res.size();
     }
 
