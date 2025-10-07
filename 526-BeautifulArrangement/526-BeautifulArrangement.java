@@ -1,17 +1,17 @@
-// Last updated: 7/10/2025, 6:49:18 am
+// Last updated: 7/10/2025, 6:54:12 am
 class Solution {
-    public int countArrangement(int n) {
-        List<List<Integer>> res = new ArrayList<>();
+    int count  = 0 ;
+    public int countArrangement(int n) { 
         boolean arr[] = new boolean[n+1];
-        helper( n , res , new ArrayList<>() , arr , 1);
+        helper( n , arr , 1);
         
         // System.out.println(res);
-        return res.size();
+        return count;
     }
 
-    public void helper( int n , List<List<Integer>> res , List<Integer> path, boolean[] arr , int ind ){
-        if( path.size()==n){
-            res.add( new ArrayList<>(path));
+    public void helper( int n  , boolean[] arr , int ind ){
+        if(  ind>n){
+            count++;
             return ;
         }
         
@@ -21,11 +21,8 @@ class Solution {
 
             arr[i] = true ; 
 
-            if( i% ind==0 || ind%i==0 ){
-            path.add( i);
-            helper( n , res ,path , arr , ind+1);
-            path.remove( path.size()-1);
-            
+            if( i% ind==0 || ind%i==0 ){ 
+                helper( n , arr , ind+1); 
             }
             arr[i] = false;
         }
