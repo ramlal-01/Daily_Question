@@ -1,4 +1,4 @@
-// Last updated: 10/10/2025, 12:33:22 am
+// Last updated: 10/10/2025, 11:00:06 pm
 class Solution {
     public int strStr(String haystack, String needle) {
         int m = haystack.length(); 
