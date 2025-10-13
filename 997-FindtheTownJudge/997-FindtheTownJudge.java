@@ -1,20 +1,16 @@
-// Last updated: 27/9/2025, 6:58:37 am
+// Last updated: 14/10/2025, 5:20:50 am
 class Solution {
     public int findJudge(int n, int[][] trust) {
+        int arr[] = new int[n+1];
 
-        int[] map = new int[n+1];
-
-        for( int i = 0 ; i<trust.length ; i++){ 
-            map[trust[i][0]]--;
-            map[trust[i][1]]++;
+        for( int i = 0 ; i<trust.length ; i++){
+            arr[ trust[i][0]]--;
+            arr[ trust[i][1]]++;
         }
-        
-        for(  int i = 1 ; i<n+1 ; i++){
-            if( map[i]==n-1){
-               return i;
-            }
 
-        } 
+        for( int i = 1 ; i<arr.length ; i++){
+            if( arr[i] == n-1) return i;
+        }
         return -1 ;
     }
 }
