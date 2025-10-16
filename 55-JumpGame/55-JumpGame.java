@@ -1,4 +1,4 @@
-// Last updated: 15/10/2025, 4:45:22 pm
+// Last updated: 17/10/2025, 12:47:43 am
 class Solution {
     public boolean canJump(int[] nums) {
         int max = 0 ;
