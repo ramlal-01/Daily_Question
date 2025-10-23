@@ -1,11 +1,12 @@
-// Last updated: 23/10/2025, 1:48:33 pm
+// Last updated: 23/10/2025, 1:49:28 pm
 class Solution {
     public int minFallingPathSum(int[][] matrix) {
         int n = matrix.length ;
         int dp[][] = new int[n][n];
         int mini = Integer.MAX_VALUE;
+        for( int ele[] : dp ) Arrays.fill( ele , -101);
         for( int i =0 ; i<n ;i++){
-            for( int ele[] : dp ) Arrays.fill( ele , -101);
+            
             int x = helper( n-1 , i , matrix , dp );
             mini = Math.min( mini , x );
         }
