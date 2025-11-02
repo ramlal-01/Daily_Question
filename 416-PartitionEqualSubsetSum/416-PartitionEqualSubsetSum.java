@@ -1,4 +1,4 @@
-// Last updated: 25/10/2025, 1:57:11 am
+// Last updated: 2/11/2025, 7:30:25 am
 class Solution {
     public boolean canPartition(int[] nums) {
         int sum = 0;
