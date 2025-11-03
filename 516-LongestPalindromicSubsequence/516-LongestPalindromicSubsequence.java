@@ -1,15 +1,15 @@
-// Last updated: 3/11/2025, 4:06:38 pm
+// Last updated: 3/11/2025, 4:16:51 pm
 class Solution {
-    public int longestPalindromeSubseq(String s) {
-        int m = s.length();
-        int n = s.length();
+    public int minDistance(String word1, String word2) {
+        int m = word1.length();
+        int n = word2.length();
 
         int dp[] = new int[n+1];
 
         for( int i =1 ; i<=m ; i++){
             int temp[] = new int[n+1];
             for( int j = 1 ; j<=n ; j++){
-                if( s.charAt(i-1)==s.charAt(n-j)){
+                if( word1.charAt(i-1)==word2.charAt(j-1)){
                     temp[j] =1+ dp[j-1];
                 }
                 else{
@@ -18,6 +18,6 @@ class Solution {
             }
             dp = temp;
         }
-        return dp[n];
+        return (m+n) - 2*dp[n];
     }
 }
