@@ -1,25 +1,34 @@
-// Last updated: 4/11/2025, 4:47:34 am
+// Last updated: 4/11/2025, 2:37:26 pm
 class Solution {
-    public int minDistance(String word1, String word2) {
-        int m = word1.length();
-        int n = word2.length();
+    public int findNumberOfLIS(int[] nums) {
+        int n = nums.length ; 
+        int dp[] = new int[n];
+        int count[] = new int[n];
 
-        int dp[][] = new int[m+1][n+1];
+        Arrays.fill( count , 1 );
+        Arrays.fill( dp , 1 );
 
-        // base cases
-        for (int i = 0; i <= m; i++) dp[i][0] = i; // delete all chars
-        for (int j = 0; j <= n; j++) dp[0][j] = j; // insert all chars
-        
-        for( int i =1 ; i<=m ; i++){
-            for( int j = 1 ; j<=n ; j++){
-                if( word1.charAt(i-1)==word2.charAt(j-1)){
-                    dp[i][j] = dp[i-1][j-1];
-                }
-                else{
-                    dp[i][j] =1 + Math.min( Math.min(dp[i-1][j],dp[i-1][j-1]) , dp[i][j-1]);
+        int max = 1 ;
+        for( int i = 1 ; i< n ;i++){
+            for( int j = 0 ; j<i ; j++){
+                if( nums[i] > nums[j] ){
+                    if( dp[j]+1 > dp[i]) {
+                        dp[i] = 1 + dp[j] ;
+                        count[i] = count[j];
+                    }
+                    else if( dp[j]+1 == dp[i] ){
+                        count[i]+=count[j];
+                    }
                 }
             }
+            max = Math.max( max , dp[i]);
         }
-        return dp[m][n];
+        
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            if (dp[i] == max) ans += count[i];
+        }
+
+        return ans;
     }
 }
