@@ -1,25 +1,20 @@
-// Last updated: 4/11/2025, 11:15:31 am
+// Last updated: 4/11/2025, 2:55:34 pm
 class Solution { 
     public int lengthOfLIS(int[] nums) {
         int n = nums.length ; 
-        int dp[] = new int[n];
+        List<Integer> tails = new ArrayList<>();
 
-        Arrays.fill( dp , 1 );
+        for( int num : nums){
+            int i = Collections.binarySearch( tails , num);
 
-        for( int i = 1 ; i< n ;i++){
-            for( int j = 0 ; j<i ; j++){
-                if( nums[i] > nums[j] ){
-                    if( dp[j]+1 > dp[i]) dp[i] = 1 + dp[j] ;
-                }
+            if( i<0 ) i = -(i+1);
+
+            if( i== tails.size() ){
+                tails.add(num);
+            } else{
+                tails.set( i , num ); 
             }
         }
-        
-        int max = dp[0] ;
-
-        for( int ele : dp ){
-            max = Math.max ( ele , max );
-        }
-        
-        return max;
+        return tails.size();
     }
 }
