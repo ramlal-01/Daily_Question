@@ -1,28 +1,22 @@
-// Last updated: 13/11/2025, 2:51:42 pm
+// Last updated: 13/11/2025, 3:24:19 pm
 class Solution {
     public int maxOperations(String s) {
-        int n = s.length() ;
+        long ans = 0;
+        long ones = 0;
+        int n = s.length();
 
-        int map[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
 
-        if( s.charAt(0) == '1' ) map[0]=1 ;
-
-        for( int i =1 ; i<n ; i++){
-            if( s.charAt(i) == '1' ){
-                map[i] = map[i-1]+1 ;
-            }
-            else map[i] = map[i-1];
-        }
-
-        int c = 0 ;
-        for( int i = 0 ; i<n-1 ; i++){
-            if( s.charAt(i)=='0' && s.charAt(i+1) == '1' ){
-                c+= map[i];
+            if (c == '1') {
+                ones++;
+            } else {
+                if (i + 1 == n || s.charAt(i + 1) == '1') {
+                    ans += ones;
+                }
             }
         }
 
-        if( s.charAt(n-1)=='0') c+= map[n-1];
-
-        return c ;
+        return (int)ans;
     }
 }
