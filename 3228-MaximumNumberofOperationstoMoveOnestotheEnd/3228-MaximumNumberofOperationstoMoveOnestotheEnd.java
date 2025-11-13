@@ -1,4 +1,4 @@
-// Last updated: 13/11/2025, 2:51:27 pm
+// Last updated: 13/11/2025, 2:51:42 pm
 class Solution {
     public int maxOperations(String s) {
         int n = s.length() ;
@@ -19,7 +19,6 @@ class Solution {
             if( s.charAt(i)=='0' && s.charAt(i+1) == '1' ){
                 c+= map[i];
             }
-            System.out.print(map[i]+" ");
         }
 
         if( s.charAt(n-1)=='0') c+= map[n-1];
