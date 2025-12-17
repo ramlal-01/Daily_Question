@@ -1,4 +1,4 @@
-// Last updated: 8/12/2025, 8:36:47 am
+// Last updated: 17/12/2025, 4:16:02 pm
 1class Solution {
 2    public int countTriples(int n) {
 3        int count = 0;
