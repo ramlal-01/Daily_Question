@@ -1,38 +1,30 @@
-// Last updated: 23/12/2025, 3:59:01 pm
-1class Solution {
-2    class Word {
-3        String text;
-4        int len;
-5        int idx;
-6        Word(String t, int i) {
-7            text = t;
-8            len = t.length();
-9            idx = i;
-10        }
-11    }
-12
-13    public String arrangeWords(String text) {
-14        String[] words = text.toLowerCase().split(" ");
-15        int n = words.length;
-16
-17        Word[] arr = new Word[n];
-18        for (int i = 0; i < n; i++) {
-19            arr[i] = new Word(words[i], i);
-20        }
-21
-22        Arrays.sort(arr, (a, b) -> {
-23            if (a.len != b.len) return a.len - b.len;
-24            return a.idx - b.idx;
-25        });
-26
-27        StringBuilder sb = new StringBuilder();
-28        for (int i =0;i<n;i++) {
-29            sb.append(arr[i].text);
-30            if (i<n-1) sb.append(" ");
-31        }
-32
-33        sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
-34        return sb.toString();
-35    }
-36}
-37
+// Last updated: 23/12/2025, 4:34:52 pm
+1class Solution{
+2    public int numWays(String s){
+3        int n=s.length() ; 
+4        int sum=0;
+5        int mod = (int)1e9+7 ;
+6        for(int i=0;i<n;i++) if(s.charAt(i)=='1') sum++;
+7
+8        if(sum%3!=0) return 0;
+9        
+10        if(sum==0){
+11            long x=n-1;
+12            return (int)(x*(x-1)/2%mod);
+13        }
+14
+15        int need=sum/3;
+16        int c=0;
+17
+18        long a=0,b=0;
+19
+20        for(int i=0;i<n;i++){
+21            if(s.charAt(i)=='1') c++;
+22            if(c==need) a++;
+23            else if(c==2*need) b++;
+24        }
+25        
+26        return (int)(a*b%mod);
+27    }
+28}
+29
