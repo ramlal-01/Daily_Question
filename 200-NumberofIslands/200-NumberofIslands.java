@@ -1,35 +1,39 @@
-// Last updated: 29/9/2025, 8:02:52 pm
- class Solution {
-    public void dfs( int ro , int co , int[][]visited , char[][] grid){
-        visited[ro][co] = 1;  
-        int m = grid.length ;
-        int n = grid[0].length ;
-        int[] drow = {-1, 0, 1, 0};
-        int[] dcol = {0, 1, 0, -1};
-
-        for (int k = 0; k < 4; k++) {
-            int nrow = ro + drow[k];
-            int ncol = co + dcol[k];
-            if (nrow >= 0 && nrow < m && ncol >= 0 && ncol < n
-                && grid[nrow][ncol] == '1' && visited[nrow][ncol] == 0) { 
-                    dfs( nrow , ncol , visited , grid );
-            }
-        }
-    }
-
-    public int numIslands(char[][] grid) {
-        int m = grid.length ;
-        int n = grid[0].length ;
-        int visited[][] = new int[m][n];
-        int c=0;
-        for( int i=0 ; i<m ; i++){
-            for ( int j=  0 ; j< n ; j++){
-                if( visited[i][j]==0 && grid[i][j]=='1'){
-                    c++;
-                    dfs( i , j , visited , grid );
-                }
-            }
-        }
-        return c;
-    }
-}
+// Last updated: 30/12/2025, 11:49:46 am
+1class Solution {
+2    public int numIslands(char[][] grid) {
+3        int n = grid.length ;
+4        int m = grid[0].length ;
+5        boolean vis[][] = new boolean[n][m];
+6        int c= 0 ;
+7        for( int i = 0 ; i<n ; i++){
+8            for( int j = 0 ; j<m ;j++){
+9                if( grid[i][j]=='1' && !vis[i][j] ){
+10                    c++;
+11                    dfs( grid , vis , i , j );
+12                }
+13            }
+14        }
+15        return c ;
+16    }
+17
+18    public void dfs( char[][] grid ,boolean vis[][] , int row , int col  ){
+19        if( vis[row][col]) return ;
+20
+21        vis[row][col] = true ;
+22        
+23        int drow[] = {-1,0,1,0};
+24        int dcol[] = {0,1,0,-1};
+25
+26        int n = grid.length ;
+27        int m = grid[0].length ;
+28
+29        for( int i =0 ; i<4 ; i++){
+30            int nrow = row+ drow[i] ;
+31            int ncol = col + dcol[i];
+32
+33            if( nrow>=0 && ncol>=0 && nrow<n && ncol<m && !vis[nrow][ncol] && grid[nrow][ncol]=='1' ){
+34                dfs( grid , vis , nrow , ncol );
+35            }
+36        }
+37    }
+38}
