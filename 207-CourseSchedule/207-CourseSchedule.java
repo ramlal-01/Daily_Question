@@ -1,4 +1,4 @@
-// Last updated: 31/12/2025, 12:27:24 pm
+// Last updated: 31/12/2025, 12:28:46 pm
 1class Solution {
 2    public boolean canFinish(int numCourses, int[][] prerequisites) {
 3        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
@@ -18,7 +18,7 @@
 17            }
 18        }
 19        
-20        Queue<Integer> q = new LinkedList<>();
+20        Queue<Integer> q = new ArrayDeque<>();
 21        for(int i = 0 ; i<V ; i++){
 22            if( indegree[i]==0){
 23                q.add( i);
@@ -37,6 +37,7 @@
 36                }
 37            }
 38        }
-39        return c==V ;
-40    }
-41}
+39
+40        return c==V ;
+41    }
+42}
