@@ -1,54 +1,56 @@
-// Last updated: 17/9/2025, 3:49:39 pm
-class Pair {
-    int dist;
-    int row;
-    int col;
-    Pair(int d, int r, int c) {
-        dist = d;
-        row = r;
-        col = c;
-    }
-}
-
-class Solution {
-    public int shortestPathBinaryMatrix(int[][] grid) {
-        int m = grid.length;
-        int n = m;
-
-        // If start or end is blocked
-        if (grid[0][0] == 1 || grid[m-1][n-1] == 1) return -1;
-
-        int[][] dist = new int[m][n];
-        for (int i = 0; i < m; i++) {
-            Arrays.fill(dist[i], Integer.MAX_VALUE);
-        }
-
-        Queue<Pair> q = new LinkedList<>();
-        q.add(new Pair(1, 0, 0)); // Start distance as 1 (not 0)
-        dist[0][0] = 1;
-
-        int[] delrow = {-1,-1, 0,1, 1,1,0,-1};
-        int[] delcol = { 0, 1,1,1, 0,-1,-1,-1};
-
-        while (!q.isEmpty()) {
-            Pair p = q.poll();
-            int dis = p.dist, r = p.row, c = p.col;
-
-            // If we reach destination
-            if (r == m-1 && c == n-1) return dis;
-
-            for (int k = 0; k < 8; k++) {
-                int nr = r + delrow[k];
-                int nc = c + delcol[k];
-
-                if (nr >= 0 && nr < m && nc >= 0 && nc < n && grid[nr][nc] == 0
-                        && dis + 1 < dist[nr][nc]) {
-                    dist[nr][nc] = dis + 1;
-                    q.add(new Pair(dis + 1, nr, nc));
-                }
-            }
-        }
-
-        return -1;
-    }
-}
+// Last updated: 2/1/2026, 11:42:20 am
+1class Pair{
+2    int r ;
+3    int c ;
+4    int d ;
+5    Pair( int r , int c, int d){
+6        this.r = r ;
+7        this.c = c ;
+8        this.d = d ;
+9    }
+10}
+11class Solution {
+12    public int shortestPathBinaryMatrix(int[][] grid) {
+13        int n = grid.length ;
+14        int mat[][] = new int[n][n];
+15        
+16        for( int ele[] : mat ) {
+17            Arrays.fill( ele , Integer.MAX_VALUE );
+18        }
+19
+20        if( grid[0][0] == 1 ) return -1 ;
+21
+22        PriorityQueue<Pair> pq = new PriorityQueue<>( (a,b) -> a.d-b.d );
+23
+24        mat[0][0] = 1 ;
+25        pq.add( new Pair( 0 , 0 , 1 ));
+26
+27        int drow[] = {-1,-1,-1,0,1,1,1,0};
+28        int dcol[] = {-1,0,1,1,1,0,-1,-1};
+29         
+30        while( !pq.isEmpty() ){
+31            Pair curr = pq.poll() ;
+32            
+33            int row = curr.r ;
+34            int col = curr.c ;
+35            int dist = curr.d ;
+36
+37            if( dist > mat[row][col] ) continue ;
+38
+39            for( int i =0 ; i<8 ; i++){
+40                int nrow = row + drow[i];
+41                int ncol = col + dcol[i];
+42
+43                if( nrow>=0 && ncol>=0 && nrow<n && ncol<n && grid[nrow][ncol]!=1 ){
+44                    int newdist = dist + 1 ;
+45                    if( newdist < mat[nrow][ncol] ){
+46                        mat[nrow][ncol] = newdist ;
+47                        pq.add( new Pair(nrow , ncol , newdist ) );
+48                    }
+49                }
+50            }
+51        }
+52
+53        return  mat[n-1][n-1]  == Integer.MAX_VALUE ? -1 : mat[n-1][n-1] ;
+54    }
+55}
