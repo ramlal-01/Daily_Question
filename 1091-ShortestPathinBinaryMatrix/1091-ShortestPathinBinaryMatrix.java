@@ -1,4 +1,4 @@
-// Last updated: 2/1/2026, 11:46:21 am
+// Last updated: 2/1/2026, 11:47:46 am
 1class Pair{
 2    int r ;
 3    int c ;
@@ -20,7 +20,7 @@
 19
 20        if (grid[0][0] == 1 || grid[n-1][n-1] == 1) return -1;
 21
-22        PriorityQueue<Pair> pq = new PriorityQueue<>( (a,b) -> a.d-b.d );
+22        Queue<Pair> pq = new LinkedList<>();
 23
 24        mat[0][0] = 1 ;
 25        pq.add( new Pair( 0 , 0 , 1 ));
@@ -30,7 +30,7 @@
 29         
 30        while( !pq.isEmpty() ){
 31            Pair curr = pq.poll() ;
-32            
+32
 33            int row = curr.r ;
 34            int col = curr.c ;
 35            int dist = curr.d ;
