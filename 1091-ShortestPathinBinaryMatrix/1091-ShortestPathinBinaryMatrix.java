@@ -1,4 +1,4 @@
-// Last updated: 2/1/2026, 11:42:20 am
+// Last updated: 2/1/2026, 11:46:21 am
 1class Pair{
 2    int r ;
 3    int c ;
@@ -18,7 +18,7 @@
 17            Arrays.fill( ele , Integer.MAX_VALUE );
 18        }
 19
-20        if( grid[0][0] == 1 ) return -1 ;
+20        if (grid[0][0] == 1 || grid[n-1][n-1] == 1) return -1;
 21
 22        PriorityQueue<Pair> pq = new PriorityQueue<>( (a,b) -> a.d-b.d );
 23
@@ -35,7 +35,7 @@
 34            int col = curr.c ;
 35            int dist = curr.d ;
 36
-37            if( dist > mat[row][col] ) continue ;
+37            if( row==n-1 && col==n-1 ) return dist ;
 38
 39            for( int i =0 ; i<8 ; i++){
 40                int nrow = row + drow[i];
