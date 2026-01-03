@@ -1,37 +1,28 @@
-// Last updated: 23/10/2025, 11:42:06 am
-class Solution {
-    public int minPathSum(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
-        int[][] dp = new int[m][n];
-        // for (int[] row : dp) Arrays.fill(row, -1);
-        // return helper(m - 1, n - 1, grid, dp);
-
-        for( int i = 0 ; i<m ;i++){
-            for( int j =0 ; j<n ;j++){
-                if( i==0 && j==0 ) dp[i][j]=grid[i][j];
-                else{
-                    int up = grid[i][j] , left = grid[i][j] ;
-                    if( i>0) up+= dp[i-1][j];
-                    else up+= 1e9;
-                    if( j>0) left+= dp[i][j-1];
-                    else left+= 1e9;
-
-                    dp[i][j] = Math.min( up, left);
-                }
-            }
-        }
-        return dp[m-1][n-1];
-    }
-
-    private int helper(int i, int j, int[][] grid, int[][] dp) {
-        if (i < 0 || j < 0) return Integer.MAX_VALUE; 
-        if (i == 0 && j == 0) return grid[0][0];
-        if (dp[i][j] != -1) return dp[i][j];
-
-        int up = helper(i - 1, j, grid, dp);
-        int left = helper(i, j - 1, grid, dp);
-
-        return dp[i][j] = grid[i][j] + Math.min(up, left);
-    }
-}
+// Last updated: 3/1/2026, 4:12:52 pm
+1class Solution {
+2    public int minPathSum(int[][] grid) {
+3        int n = grid.length;
+4        int m = grid[0].length;
+5        int[][] dp = new int[n][m];
+6        for (int[] row : dp) Arrays.fill(row, -1);
+7        return helper(grid, dp, 0, 0);
+8    }
+9
+10    public int helper(int[][] grid, int[][] dp, int row, int col) {
+11        if (row >= grid.length || col >= grid[0].length)
+12            return Integer.MAX_VALUE;
+13
+14        if (row == grid.length - 1 && col == grid[0].length - 1)
+15            return grid[row][col];
+16
+17        if (dp[row][col] != -1)
+18            return dp[row][col];
+19
+20        int down = helper(grid, dp, row + 1, col);
+21        int right = helper(grid, dp, row, col + 1);
+22
+23        return dp[row][col] =
+24            grid[row][col] + Math.min(down, right);
+25    }
+26}
+27
