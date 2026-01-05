@@ -1,38 +1,38 @@
-// Last updated: 5/1/2026, 12:59:33 pm
-1class DS{
-2    List<Integer> rank = new ArrayList<>();
-3    List<Integer> par = new ArrayList<>(); 
+// Last updated: 5/1/2026, 1:00:28 pm
+1class DS{ 
+2    List<Integer> par = new ArrayList<>();
+3    List<Integer> size = new ArrayList<>();
 4    public DS(int n ){
 5        for( int i =0; i<=n ;i++){
-6            rank.add(0);
-7            par.add(i); 
-8        }
-9    }
-10    public int find( int node){
-11        if( node == par.get(node)){
-12            return node;
-13        }
-14
-15        int ult = find(par.get(node));
-16        par.set(node, ult );
-17        return par.get(node);
-18    }
-19
-20    public void unionByRank( int u , int v){
-21        int ult_u = find(u);
-22        int ult_v = find(v);
-23
-24        if( ult_u == ult_v ) return ;
-25        if( rank.get(ult_u) < rank.get(ult_v)){
-26            par.set(ult_u , ult_v);
-27        }
-28        else if( rank.get(ult_v) < rank.get(ult_u) ){
-29            par.set( ult_v , ult_u);
-30        }
-31        else{
-32            par.set(ult_v , ult_u);
-33            int rankU = rank.get( ult_u);
-34            rank.set( ult_u , rankU+1); 
+6            
+7            par.add(i);
+8            size.add(1);
+9        }
+10    }
+11    public int find( int node){
+12        if( node == par.get(node)){
+13            return node;
+14        }
+15
+16        int ult = find(par.get(node));
+17        par.set(node, ult );
+18        return par.get(node);
+19    }
+20
+21
+22    public void unionBySize( int u , int v){
+23        int ult_u = find(u);
+24        int ult_v = find(v);
+25
+26        if( ult_u == ult_v ) return ;
+27
+28        if( size.get(ult_u) < size.get(ult_v)){
+29            par.set(ult_u , ult_v);
+30            size.set(ult_v , size.get(ult_v) + size.get(ult_u));
+31        }
+32        else{
+33            par.set( ult_v , ult_u);
+34            size.set(ult_u , size.get(ult_v) + size.get(ult_u));
 35        }
 36    }
 37}
@@ -46,7 +46,7 @@
 45        for( int i=0 ; i<V ; i++){
 46            for( int j = 0 ; j<V ;j++){
 47                if( isConnected[i][j] == 1 ){
-48                    DisjoinSet.unionByRank(i , j );
+48                    DisjoinSet.unionBySize(i , j );
 49                }
 50            }
 51        }
