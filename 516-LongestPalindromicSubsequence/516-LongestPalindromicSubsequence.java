@@ -1,23 +1,28 @@
-// Last updated: 3/11/2025, 4:16:51 pm
-class Solution {
-    public int minDistance(String word1, String word2) {
-        int m = word1.length();
-        int n = word2.length();
-
-        int dp[] = new int[n+1];
-
-        for( int i =1 ; i<=m ; i++){
-            int temp[] = new int[n+1];
-            for( int j = 1 ; j<=n ; j++){
-                if( word1.charAt(i-1)==word2.charAt(j-1)){
-                    temp[j] =1+ dp[j-1];
-                }
-                else{
-                    temp[j] = Math.max( dp[j] , temp[j-1]);
-                }
-            }
-            dp = temp;
-        }
-        return (m+n) - 2*dp[n];
-    }
-}
+// Last updated: 22/1/2026, 11:28:48 am
+1class Solution {
+2    public int longestPalindromeSubseq(String s) {
+3        String s1 = new StringBuilder(s).reverse().toString();
+4
+5        int n = s.length() ;
+6
+7        int dp[][] = new int[n+1][n+1] ;
+8
+9        for( int i=0; i<=n ;i++){
+10            dp[i][n] = 0;
+11        }
+12        for( int i =0 ;i<=n ; i++){
+13            dp[n][i] = 0;
+14        }
+15
+16        for( int i=1;i<=n ;i++){
+17            for( int j =1 ; j<=n ; j++){
+18                if(s.charAt(i-1) == s1.charAt(j-1) ){
+19                    dp[i][j] = 1+ dp[i-1][j-1];
+20                }
+21                else dp[i][j] = Math.max( dp[i-1][j] , dp[i][j-1] );
+22            }
+23        }
+24
+25        return dp[n][n] ;
+26    }
+27}
