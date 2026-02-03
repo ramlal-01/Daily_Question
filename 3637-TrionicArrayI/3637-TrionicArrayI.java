@@ -1,4 +1,4 @@
-// Last updated: 3/2/2026, 12:32:52 pm
+// Last updated: 3/2/2026, 12:43:45 pm
 1class Solution {
 2    public boolean isTrionic(int[] nums) {
 3        if (nums.length < 4) return false;
@@ -18,13 +18,11 @@
 17
 18        int changes = 0;
 19        for (int i = 1; i < list.size(); i++) {
-20            if (!list.get(i).equals(list.get(i - 1))) {
+20            if( list.get(i)!=(list.get(i - 1)) ) {
 21                changes++;
 22            }
 23        }
-24
-25        // must start with 1 and end with 1 and have exactly 2 changes
-26        return list.get(0) == 1 && list.get(list.size() - 1) == 1 && changes == 2;
-27    }
-28}
-29
+24        return list.get(0) == 1 && list.get(list.size()-1) == 1 && changes == 2;
+25    }
+26}
+27
