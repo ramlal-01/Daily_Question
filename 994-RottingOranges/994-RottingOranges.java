@@ -1,4 +1,4 @@
-// Last updated: 18/2/2026, 4:12:34 pm
+// Last updated: 18/2/2026, 4:13:33 pm
 1class Pair{
 2    int r ; 
 3    int c ;
@@ -21,7 +21,7 @@
 20        for( int i=0 ; i<m ; i++ ){
 21            for( int j = 0 ; j<n ; j++ ){
 22                if( grid[i][j]==2 ){
-23                    q.add( new Pair(i , j , 0 ));
+23                    q.add( new Pair(i , j , 1 ));
 24                }
 25                if( grid[i][j]==1 ){
 26                    total++;
@@ -50,7 +50,7 @@
 49                    q.add( new Pair( newrow,newcol, ora+1 ));
 50
 51                    if( total == 0 ){
-52                        return ora+1 ;
+52                        return ora;
 53                    }
 54                }
 55            }
