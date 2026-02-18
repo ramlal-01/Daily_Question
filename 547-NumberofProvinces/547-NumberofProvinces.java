@@ -1,59 +1,41 @@
-// Last updated: 5/1/2026, 1:00:28 pm
-1class DS{ 
-2    List<Integer> par = new ArrayList<>();
-3    List<Integer> size = new ArrayList<>();
-4    public DS(int n ){
-5        for( int i =0; i<=n ;i++){
-6            
-7            par.add(i);
-8            size.add(1);
-9        }
-10    }
-11    public int find( int node){
-12        if( node == par.get(node)){
-13            return node;
-14        }
-15
-16        int ult = find(par.get(node));
-17        par.set(node, ult );
-18        return par.get(node);
-19    }
-20
-21
-22    public void unionBySize( int u , int v){
-23        int ult_u = find(u);
-24        int ult_v = find(v);
-25
-26        if( ult_u == ult_v ) return ;
-27
-28        if( size.get(ult_u) < size.get(ult_v)){
-29            par.set(ult_u , ult_v);
-30            size.set(ult_v , size.get(ult_v) + size.get(ult_u));
-31        }
-32        else{
-33            par.set( ult_v , ult_u);
-34            size.set(ult_u , size.get(ult_v) + size.get(ult_u));
-35        }
-36    }
-37}
+// Last updated: 18/2/2026, 3:35:12 pm
+1class Solution {
+2    public int findCircleNum(int[][] isConnected) {
+3        int n = isConnected.length ;
+4        List<List<Integer>> adj = new ArrayList<>();
+5        for( int i =0 ; i<n ; i++ ){
+6            adj.add( new ArrayList<>());
+7        }
+8
+9        for( int i =0 ; i<n ; i++ ){
+10            for( int j = 0 ; j< isConnected[i].length ; j++ ){
+11                if( isConnected[i][j]==1 ){
+12                    adj.get(i).add(j);
+13                    adj.get(j).add(i);
+14                }
+15            }
+16        }
+17
+18        boolean vis[] = new boolean[n] ;
+19        int c = 0 ;
+20        for( int i =0 ; i<n ; i++ ){
+21            if( !vis[i] ){
+22                dfs( adj , i , vis );
+23                c++;
+24            }
+25        }
+26        return c ;
+27    }
+28
+29    public void dfs( List<List<Integer>> adj , int node , boolean[] vis ){
+30        vis[node] = true ;
+31
+32        for( int ele : adj.get(node) ){
+33            if( !vis[ele]){
+34                dfs( adj , ele , vis );
+35            }
+36        }
+37    }
 38
-39class Solution {
-40    public int findCircleNum(int[][] isConnected) {
-41        int V = isConnected.length; 
-42
-43        DS DisjoinSet = new DS(V);
-44        int c = 0 ; 
-45        for( int i=0 ; i<V ; i++){
-46            for( int j = 0 ; j<V ;j++){
-47                if( isConnected[i][j] == 1 ){
-48                    DisjoinSet.unionBySize(i , j );
-49                }
-50            }
-51        }
-52
-53        for( int i =0 ; i<V ; i++){
-54            if( DisjoinSet.par.get(i) == i ) c++;
-55        }
-56        return c ;
-57    }
-58}
+39
+40}
