@@ -1,48 +1,31 @@
-// Last updated: 5/9/2025, 12:49:09 pm
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
-    private Map<Integer, Integer> inorderMap;
-    private int preorderIndex;
-
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
-        inorderMap = new HashMap<>();
-        preorderIndex = 0;
-
-        // store inorder values and their indices
-        for (int i = 0; i < inorder.length; i++) {
-            inorderMap.put(inorder[i], i);
-        }
-
-        return build(preorder, 0, inorder.length - 1);
-    }
-
-    private TreeNode build(int[] preorder, int inStart, int inEnd) {
-        if (inStart > inEnd) return null;
-
-        // pick current root from preorder
-        int rootVal = preorder[preorderIndex++];
-        TreeNode root = new TreeNode(rootVal);
-
-        // split inorder into left and right
-        int inIndex = inorderMap.get(rootVal);
-
-        root.left = build(preorder, inStart, inIndex - 1);
-        root.right = build(preorder, inIndex + 1, inEnd);
-
-        return root;
-    }
-}
+// Last updated: 20/2/2026, 3:05:54 pm
+1class Solution {
+2
+3    int preIdx = 0;
+4
+5    public TreeNode buildTree(int[] preorder, int[] inorder) {
+6        return helper(preorder, inorder, 0, inorder.length - 1);
+7    }
+8
+9    public TreeNode helper(int[] pre, int[] in, int low, int high) {
+10        if (low > high) {
+11            return null;
+12        }
+13
+14        TreeNode root = new TreeNode(pre[preIdx++]);
+15
+16        int inIdx = search(in, root.val);
+17
+18        root.left = helper(pre, in, low, inIdx - 1);
+19        root.right = helper(pre, in, inIdx + 1, high);
+20
+21        return root;
+22    }
+23
+24    public int search(int[] in, int val) {
+25        for (int i = 0; i < in.length; i++) {
+26            if (in[i] == val) return i;
+27        }
+28        return -1;
+29    }
+30}
