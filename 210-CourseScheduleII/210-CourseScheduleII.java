@@ -1,40 +1,37 @@
-// Last updated: 28/2/2026, 1:18:08 am
-1class Solution {
-2    public int[] findOrder(int numCourses, int[][] prerequisites) {
-3        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-4        int V = numCourses ;
-5        for(int i =0 ;i<V ;i++) adj.add( new ArrayList<>() );
-6        
-7        int indegre[] = new int[V];
-8        for( int ele[] : prerequisites ){
-9            adj.get(ele[1]).add(ele[0]);
-10            indegre[ele[0]]++;
-11        }
-12        Queue<Integer> que = new ArrayDeque<>();
-13        for( int i =0 ; i<V ; i++){
-14            if( indegre[i]==0 ){
-15                que.add(i);
-16            }
-17        }
-18        
-19        int topo[] = new int[V];
-20        int k =0 ;
-21
-22        int c = 0;
-23        while( !que.isEmpty() ){
-24            int node = que.poll();
-25            topo[k++] = node ;
-26            c++;
-27            for( int ele : adj.get(node) ){
-28                indegre[ele]--;
-29
-30                if( indegre[ele]==0){
-31                    que.add( ele );
-32                }
-33            }
-34        }
-35
-36        if( c<V ) return new int[0];
-37        return topo ;
-38    }
-39}
+// Last updated: 28/2/2026, 1:18:54 am
+1/*
+2// Definition for a Node.
+3class Node {
+4    public int val;
+5    public Node prev;
+6    public Node next;
+7    public Node child;
+8};
+9*/
+10
+11class Solution {
+12    public Node flatten(Node head) { 
+13        Node temp = head ;
+14
+15        Stack<Node> st = new Stack<>() ;
+16
+17        while( temp!=null ){
+18
+19            if( temp.child!=null ) 
+20            {
+21                if( temp.next!=null ) st.push( temp.next ) ;
+22
+23                temp.child.prev = temp ;
+24                temp.next = temp.child ;
+25                temp.child = null ;
+26            }
+27            if( temp.next == null && !st.isEmpty() ) {
+28                Node curr = st.pop() ;
+29                temp.next = curr ;
+30                curr.prev = temp ;
+31            }
+32            temp =  temp.next ;
+33        }
+34        return head ;
+35    }
+36}
