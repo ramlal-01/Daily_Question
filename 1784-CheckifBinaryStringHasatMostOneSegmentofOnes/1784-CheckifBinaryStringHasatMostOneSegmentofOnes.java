@@ -1,18 +1,24 @@
-// Last updated: 6/3/2026, 12:23:18 pm
+// Last updated: 6/3/2026, 12:28:52 pm
 1class Solution {
-2    public boolean checkOnesSegment(String s) {
-3        
-4        String arr[] = s.split("0") ;
-5        // System.out.println( Arrays.toString(arr));
-6        // if( one==1) return true; 
-7
-8        // for( int i =1 ;  i<n ; i++ ){
-9        //     if( s.charAt(i-1)=='1' && s.charAt(i)=='1' ){
-10        //         return true ;
-11        //     }
-12        // }
-13        // return false ;
-14        if( arr.length==1 ) return true ;
-15        return false ;
-16    }
-17}
+2    public int minOperations(String s) {
+3        int flag = 0 ;
+4        
+5        int c = 0 ;
+6        for( char ch : s.toCharArray()){
+7            if( ch-'0' != flag ){
+8                c++;
+9            }
+10            flag = 1-flag ;
+11        }
+12
+13        flag = 1 ;
+14        int cnt = 0 ;
+15        for( char ch : s.toCharArray()){
+16            if( ch-'0' != flag ){
+17                cnt++;
+18            }
+19            flag = 1-flag ;
+20        }
+21        return Math.min( c , cnt ) ;
+22    }
+23}
