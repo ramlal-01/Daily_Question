@@ -1,21 +1,30 @@
-// Last updated: 11/3/2026, 2:50:18 pm
-1class Solution {
-2    public int[] intersect(int[] nums1, int[] nums2) {
-3        List<Integer> set = new ArrayList<>() ;
-4        for( int ele : nums1){
-5            set.add(ele);
-6        }
-7        List<Integer> list = new ArrayList<>() ;
-8        for( int ele : nums2 ){
-9            if( set.contains(ele) ){
-10                list.add(ele);
-11                set.remove(Integer.valueOf(ele));
-12            }
-13        }
-14        int[] arr = new int[list.size()];
-15        for(int k = 0; k < list.size(); k++){
-16            arr[k] = list.get(k);
-17        }
-18        return arr;
-19    }
-20}
+// Last updated: 11/3/2026, 2:54:34 pm
+import java.util.*;
+
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+
+        HashMap<Integer,Integer> map = new HashMap<>();
+
+        for(int num : nums1){
+            map.put(num, map.getOrDefault(num,0) + 1);
+        }
+
+        List<Integer> list = new ArrayList<>();
+
+        for(int num : nums2){
+            if(map.containsKey(num) && map.get(num) > 0){
+                list.add(num);
+                map.put(num, map.get(num) - 1);
+            }
+        }
+
+        int[] ans = new int[list.size()];
+
+        for(int i = 0; i < list.size(); i++){
+            ans[i] = list.get(i);
+        }
+
+        return ans;
+    }
+}
