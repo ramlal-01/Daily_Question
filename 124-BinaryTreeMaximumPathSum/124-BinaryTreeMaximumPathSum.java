@@ -1,4 +1,4 @@
-// Last updated: 12/3/2026, 2:56:43 pm
+// Last updated: 12/3/2026, 2:57:42 pm
 1/**
 2 * Definition for a binary tree node.
 3 * public class TreeNode {
@@ -15,25 +15,19 @@
 14 * }
 15 */
 16class Solution {
-17    int max = Integer.MIN_VALUE ;
+17    int max = Integer.MIN_VALUE ; 
 18    public int maxPathSum(TreeNode root) {
-19        helper( root ) ;
+19        helper( root );
 20        return max ;
 21    }
-22
-23    public int helper( TreeNode root ){
-24        if( root==null  ){
-25            return 0 ;
-26        }
+22    public int helper( TreeNode root ) {
+23        if( root==null ) return 0 ;
+24        
+25        int left = Math.max( 0, helper( root.left ) ) ;
+26        int right = Math.max( 0 , helper( root.right ) ) ;
 27
-28        int left = helper( root.left );
-29        if( left<0 ) left = 0 ;
-30        int right = helper( root.right );
-31        if( right<0 ) right = 0 ;
-32
-33        max = Math.max( max , left+right+root.val ) ;
-34        max = Math.max( max , root.val ) ;
-35
-36        return root.val + Math.max(left,right) ;
-37    }
-38}
+28        max = Math.max( max , root.val + left + right ) ;
+29
+30        return root.val + Math.max(left, right ) ;
+31    }
+32}
