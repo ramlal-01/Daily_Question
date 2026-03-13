@@ -1,4 +1,4 @@
-// Last updated: 13/3/2026, 11:58:30 am
+// Last updated: 13/3/2026, 12:12:25 pm
 1/**
 2 * Definition for a binary tree node.
 3 * public class TreeNode {
@@ -15,19 +15,22 @@
 14 * }
 15 */
 16class Solution {
-17    List<Integer> list;
-18    public int kthSmallest(TreeNode root, int k) {
-19        list = new ArrayList<>() ;
-20        helper( root ) ;
-21        //System.out.println( list ) ;
-22        return list.get(k-1) ;
+17    int cnt = 0 ;
+18    int ans = -1 ;
+19    public int kthSmallest(TreeNode root, int k) {
+20       
+21        helper( root , k ) ;
+22        return ans ;
 23    }
 24
-25    public void helper( TreeNode root ){
-26        if( root==null ) return ;
+25    public void helper( TreeNode root , int k ){
+26        if( root==null || ans!=-1) return ;
 27
-28        helper( root.left );
-29        list.add(root.val) ;
-30        helper( root.right ) ;
-31    }
-32}
+28    
+29        helper( root.left , k );
+30        cnt++;
+31        if( cnt ==k )  ans = root.val ;
+32
+33        helper( root.right , k ) ;
+34    }
+35}
