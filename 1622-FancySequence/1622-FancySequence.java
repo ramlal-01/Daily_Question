@@ -1,4 +1,4 @@
-// Last updated: 15/3/2026, 11:41:50 am
+// Last updated: 15/3/2026, 11:42:26 am
 1class Solution {
 2    List<String> res ;
 3    public String getHappyString(int n, int k) {
