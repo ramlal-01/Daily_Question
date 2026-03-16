@@ -1,4 +1,4 @@
-// Last updated: 16/3/2026, 3:33:32 pm
+// Last updated: 16/3/2026, 3:35:17 pm
 1class Pair{
 2    int row ; 
 3    int col ;
@@ -39,34 +39,35 @@
 38        int drow[] = { -1 , 0 , 1 , 0 } ;
 39        int dcol[] = { 0 , 1 , 0 , -1 } ;
 40
-41        while( !pq.isEmpty() ){
-42            Pair curr = pq.poll() ;
-43            int row = curr.row ;
-44            int col = curr.col ;
-45            int dis = curr.dist ;
+41        while(!pq.isEmpty()){
+42            Pair curr = pq.poll();
+43            int row = curr.row;
+44            int col = curr.col;
+45            int dis = curr.dist;
 46
-47            if( dis > dist[row][col] ) continue ;
-48
-49            for( int i =0 ; i<4 ; i++ ){
-50                int nrow = row+drow[i] ;
-51                int ncol = col+dcol[i] ;
-52
-53                if(nrow>=0 && ncol>=0 && nrow<n && ncol<n && 
-54                    grid[nrow][ncol]==0 && dis+1 < dist[nrow][ncol] ){
-55                        dist[nrow][ncol] = dis+1 ;
-56                        pq.add( new Pair( nrow , ncol , dis+1 ) );
-57                    }
-58            }
-59        }
-60
-61        int max = Integer.MIN_VALUE ;
-62       
-63        for( int i =0 ; i<n ; i++ ){
-64            for( int j = 0 ; j<n ; j++ ){
-65                max = Math.max( max , dist[i][j] );
-66            }
-67        }
-68
-69        return max ;
-70    }
-71}
+47            for(int i = 0; i < 4; i++){
+48                int nrow = row + drow[i];
+49                int ncol = col + dcol[i];
+50
+51                if(nrow>=0 && ncol>=0 && nrow<n && ncol<n &&
+52                grid[nrow][ncol]==0 && dis+1 < dist[nrow][ncol]){
+53
+54                    dist[nrow][ncol] = dis+1;
+55                    pq.add(new Pair(nrow, ncol, dis+1));
+56                }
+57            }
+58        }
+59
+60        int max = Integer.MIN_VALUE;
+61
+62        for(int i=0;i<n;i++){
+63            for(int j=0;j<n;j++){
+64                if(grid[i][j]==0){
+65                    max = Math.max(max, dist[i][j]);
+66                }
+67            }
+68        }
+69
+70        return max;
+71    }
+72}
