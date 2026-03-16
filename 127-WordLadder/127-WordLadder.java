@@ -1,4 +1,4 @@
-// Last updated: 16/3/2026, 11:55:51 am
+// Last updated: 16/3/2026, 12:11:21 pm
 1class Pair{
 2    String str ;
 3    int dist ;
@@ -19,31 +19,30 @@
 18        set.remove( beginWord ) ;
 19
 20        if( !set.contains(endWord) ) return 0 ;
-21        
+21
 22        while( !q.isEmpty() ){
 23            String s = q.peek().str ;
 24            int d = q.peek().dist ;
 25            q.poll() ;
-26
+26 
 27            for( int i =0 ; i<s.length() ; i++ ){
-28                for( char c = 'a' ; c<='z' ; c++ ){
-29                    char[] arr = s.toCharArray() ;
-30
-31                    if( arr[i]==c ) continue ;
-32
-33                    arr[i] = c ;
-34                    String nword = new String(arr) ;
-35
-36                    if( nword.equals( endWord )) return d+1 ;
-37
-38                    else if( set.contains(nword) ){
-39                        q.add( new Pair(nword, d+1 ) );
-40                        set.remove(nword) ;
-41                    }
-42                }
-43            }
-44            
-45        }
-46        return 0 ;
-47    }
-48}
+28                char[] arr = s.toCharArray() ;
+29                for( char c = 'a' ; c<='z' ; c++ ){
+30                    if( arr[i]==c ) continue ;
+31
+32                    arr[i] = c ;
+33                    String nword = new String(arr) ;
+34
+35                    if( nword.equals( endWord )) return d+1 ;
+36
+37                    else if( set.contains(nword) ){
+38                        q.add( new Pair(nword, d+1 ) );
+39                        set.remove(nword) ;
+40                    }
+41                }
+42            }
+43            
+44        }
+45        return 0 ;
+46    }
+47}
