@@ -1,4 +1,4 @@
-// Last updated: 16/3/2026, 3:28:09 pm
+// Last updated: 16/3/2026, 3:29:11 pm
 1class Pair{
 2    int row ; 
 3    int col ;
@@ -45,29 +45,31 @@
 44            int col = curr.col ;
 45            int dis = curr.dist ;
 46
-47            for( int i =0 ; i<4 ; i++ ){
-48                int nrow = row+drow[i] ;
-49                int ncol = col+dcol[i] ;
-50
-51                if(nrow>=0 && ncol>=0 && nrow<n && ncol<n && 
-52                    grid[nrow][ncol]==0 && dis+1 < dist[nrow][ncol] ){
-53                        dist[nrow][ncol] = dis+1 ;
-54                        pq.add( new Pair( nrow , ncol , dis+1 ) );
-55                    }
-56            }
-57        }
-58
-59        int max = Integer.MIN_VALUE ;
-60        boolean flag = true ;
-61        for( int i =0 ; i<n ; i++ ){
-62            for( int j = 0 ; j<n ; j++ ){
-63                flag = false ;
-64                max = Math.max( max , dist[i][j] );
-65            }
-66        }
-67
-68        if(flag) return -1 ;
+47            if( dis > dist[row][col] ) continue ;
+48            
+49            for( int i =0 ; i<4 ; i++ ){
+50                int nrow = row+drow[i] ;
+51                int ncol = col+dcol[i] ;
+52
+53                if(nrow>=0 && ncol>=0 && nrow<n && ncol<n && 
+54                    grid[nrow][ncol]==0 && dis+1 < dist[nrow][ncol] ){
+55                        dist[nrow][ncol] = dis+1 ;
+56                        pq.add( new Pair( nrow , ncol , dis+1 ) );
+57                    }
+58            }
+59        }
+60
+61        int max = Integer.MIN_VALUE ;
+62        boolean flag = true ;
+63        for( int i =0 ; i<n ; i++ ){
+64            for( int j = 0 ; j<n ; j++ ){
+65                flag = false ;
+66                max = Math.max( max , dist[i][j] );
+67            }
+68        }
 69
-70        return max ;
-71    }
-72}
+70        if(flag) return -1 ;
+71
+72        return max ;
+73    }
+74}
