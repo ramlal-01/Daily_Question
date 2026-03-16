@@ -1,58 +1,53 @@
-// Last updated: 3/1/2026, 7:15:10 am
-1class Pair {
-2    int node;
-3    int dist;
-4    Pair(int n , int d) {
-5        node = n;
-6        dist = d;
+// Last updated: 16/3/2026, 2:50:20 pm
+1class Pair{
+2    int node ; 
+3    int time ; 
+4    Pair( int node , int time ){
+5        this.time = time ;
+6        this.node = node ;
 7    }
 8}
 9class Solution {
 10    public int networkDelayTime(int[][] times, int n, int k) {
-11        ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
-12        int V = n+1 ;
-13        for( int i =0 ; i<V ; i++){
-14            adj.add( new ArrayList<>());
+11        List<List<Pair>> adj = new ArrayList<>() ;
+12
+13        for( int i =0 ; i<n ; i++ ){
+14            adj.add( new ArrayList<>() );
 15        }
-16        
-17        for( int i = 0 ; i<times.length ; i++){
-18            int u = times[i][0];
-19            int v = times[i][1];
-20            int w = times[i][2];
-21            adj.get(u).add(new Pair(v, w));
-22        }
-23         
-24        int[] dist = new int[V];
-25        Arrays.fill(dist, Integer.MAX_VALUE);
-26        dist[k] = 0;
-27 
-28        PriorityQueue<Pair> q = new PriorityQueue<>((a, b) -> a.dist - b.dist);
-29        q.add(new Pair(k, 0));
-30
-31        while (!q.isEmpty()) {
-32            Pair curr = q.poll();
-33            int u = curr.node;
-34            int d = curr.dist;
-35
-36            if (d > dist[u]) continue;  
-37
-38            for (Pair edge : adj.get(u)) {
-39                int v = edge.node;
-40                int wt = edge.dist;
-41                int newdist = d + wt ;
-42                if (newdist  < dist[v]) {
-43                    dist[v] = newdist ;
-44                    q.add(new Pair( v, newdist ));
-45                }
-46            }
-47        }
-48        int max = Integer.MIN_VALUE ;
-49        for (int i=1 ; i<V;i++) {
-50            if (dist[i] == Integer.MAX_VALUE) {
-51                return -1;  
-52            }
-53            max = Math.max(dist[i], max );
-54        }
-55        return max;
-56    }
-57}
+16
+17        for( int ele[] : times ){
+18            adj.get( ele[0]-1 ).add( new Pair( ele[1]-1,ele[2]) );
+19        }
+20
+21        PriorityQueue<Pair> pq = new PriorityQueue<>( (a,b) -> a.time-b.time ) ;
+22        pq.add( new Pair(k-1 , 0 )) ;
+23
+24        int dist[] = new int[n] ;
+25        Arrays.fill( dist , Integer.MAX_VALUE ) ;
+26        dist[k-1] = 0 ;
+27
+28        while( !pq.isEmpty() ){
+29            Pair curr  = pq.poll() ;
+30            int node = curr.node ;
+31            int time = curr.time ;
+32
+33            for( Pair nei : adj.get(node) ){
+34                int nnode = nei.node ;
+35                int ntime = nei.time ;
+36
+37                if( time+ntime < dist[nnode] ){
+38                    dist[nnode] = time + ntime ;
+39                    pq.add( new Pair( nnode , time+ntime ));
+40                }
+41            }
+42        }
+43
+44        int max = Integer.MIN_VALUE ;
+45        for( int ele : dist ){
+46            if( ele==Integer.MAX_VALUE ) return -1 ;
+47
+48            max = Math.max( max , ele ) ;
+49        }
+50        return max ;
+51    }
+52}
