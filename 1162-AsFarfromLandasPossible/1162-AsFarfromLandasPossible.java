@@ -1,4 +1,4 @@
-// Last updated: 16/3/2026, 3:29:11 pm
+// Last updated: 16/3/2026, 3:33:32 pm
 1class Pair{
 2    int row ; 
 3    int col ;
@@ -19,7 +19,7 @@
 18            Arrays.fill( ele , Integer.MAX_VALUE ) ;
 19        }
 20
-21        PriorityQueue<Pair> pq = new PriorityQueue<>( (a,b)-> a.dist-b.dist ) ;
+21        Queue<Pair> pq = new LinkedList<>() ;
 22
 23        int one = 0 ;
 24        int zero = 0 ;
@@ -46,7 +46,7 @@
 45            int dis = curr.dist ;
 46
 47            if( dis > dist[row][col] ) continue ;
-48            
+48
 49            for( int i =0 ; i<4 ; i++ ){
 50                int nrow = row+drow[i] ;
 51                int ncol = col+dcol[i] ;
@@ -60,16 +60,13 @@
 59        }
 60
 61        int max = Integer.MIN_VALUE ;
-62        boolean flag = true ;
+62       
 63        for( int i =0 ; i<n ; i++ ){
 64            for( int j = 0 ; j<n ; j++ ){
-65                flag = false ;
-66                max = Math.max( max , dist[i][j] );
-67            }
-68        }
-69
-70        if(flag) return -1 ;
-71
-72        return max ;
-73    }
-74}
+65                max = Math.max( max , dist[i][j] );
+66            }
+67        }
+68
+69        return max ;
+70    }
+71}
