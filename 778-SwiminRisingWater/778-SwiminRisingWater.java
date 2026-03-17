@@ -1,56 +1,57 @@
-// Last updated: 6/1/2026, 7:51:12 am
-1 class Pair {
-2    int dif;
-3    int row;
-4    int col;
-5    Pair(int d, int r, int c) {
-6        dif = d;
-7        row = r;
-8        col = c;
+// Last updated: 17/3/2026, 12:00:17 pm
+1class Pair{
+2    int row ;
+3    int col  ;
+4    int time ;
+5    Pair(int row , int col , int time){
+6        this.row = row ;
+7        this.col = col ;
+8        this.time = time ;
 9    }
 10}
 11class Solution {
-12    public int swimInWater(int[][] heights) {
-13        int m = heights.length;
-14        int n = heights[0].length;
+12    public int swimInWater(int[][] grid) {
+13        int n = grid.length ;
+14        PriorityQueue<Pair> q = new PriorityQueue<>( (a,b)-> a.time - b.time ) ;
 15 
-16        int[][] diff = new int[m][n];
+16        q.add( new Pair(0,0,grid[0][0]));
 17
-18        for (int i = 0; i < m; i++) {
-19            Arrays.fill(diff[i], Integer.MAX_VALUE);
-20        }
-21
-22        PriorityQueue<Pair> q = new PriorityQueue<>( (a,b)->a.dif-b.dif);
-23        q.add(new Pair(heights[0][0], 0, 0));
-24        diff[0][0] = heights[0][0];
+18        int[][] dist = new int[n][n] ;
+19        for( int[] ele : dist ) Arrays.fill( ele , Integer.MAX_VALUE ) ;
+20
+21        dist[0][0] = 0 ;
+22
+23        int drow[] = { -1 , 0 , 1 , 0 } ;
+24        int dcol[] = { 0 , 1 , 0 , -1 } ;
 25
-26
-27        int[] delrow = {-1,0,1,0};
-28        int[] delcol = { 0, 1, 0,-1};
-29
-30        while (!q.isEmpty()) {
-31            Pair p = q.poll();
-32            int difference = p.dif, r = p.row, c = p.col;
-33
-34            if (r == m-1 && c == n-1) return difference ;
-35
-36            for (int k = 0; k < 4; k++) {
-37                int nr = r + delrow[k];
-38                int nc = c + delcol[k];
+26        while( !q.isEmpty() ){
+27
+28            Pair curr = q.poll() ;
+29            int row = curr.row ;
+30            int col = curr.col ;
+31            int t = curr.time ;
+32
+33            if( row==n-1 && col==n-1 ) return t ;
+34
+35            for( int i =0 ; i<4 ; i++ ){
+36                
+37                int nrow = row + drow[i] ;
+38                int ncol = col + dcol[i] ;
 39
-40                if (nr >= 0 && nr < m && nc >= 0 && nc < n ) {
-41                     
-42                    int newdif = Math.max( heights[nr][nc] , difference ) ;
-43
-44                    if( newdif< diff[nr][nc] ){ 
-45                        diff[nr][nc] = newdif;
-46                        q.add(new Pair( newdif , nr, nc));
-47                    }
-48                    
-49                }
-50            }
-51        }
-52
-53        return 0;
-54    }
-55}
+40                if( nrow>=0 && ncol>=0 && nrow<n && ncol<n ) {
+41
+42                    int ntime = grid[nrow][ncol] ;
+43                    int newtime = Math.max( t , ntime ) ;
+44
+45                    if( newtime < dist[nrow][ncol] ){
+46
+47                        dist[nrow][ncol] = newtime ;
+48                        q.add( new Pair( nrow , ncol , newtime ) ) ;
+49                        
+50                    }
+51                }
+52            }
+53        } 
+54        return 0 ;
+55    }
+56}
