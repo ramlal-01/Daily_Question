@@ -1,4 +1,4 @@
-// Last updated: 18/2/2026, 4:13:33 pm
+// Last updated: 18/3/2026, 10:24:58 am
 1class Pair{
 2    int r ; 
 3    int c ;
@@ -30,16 +30,16 @@
 29        }
 30
 31        if( total==0 ) return 0 ;
-32        int nrow[] = {-1,0,1,0};
-33        int ncol[] = {0,1,0,-1};
-34        while( !q.isEmpty() ){
-35            Pair curr = q.poll() ;
-36            int row = curr.r ;
-37            int col = curr.c ;
-38            int ora = curr.o ;
-39
-40            
-41            
+32
+33        int nrow[] = {-1,0,1,0};
+34        int ncol[] = {0,1,0,-1};
+35
+36        while( !q.isEmpty() ){
+37            Pair curr = q.poll() ;
+38            int row = curr.r ;
+39            int col = curr.c ;
+40            int ora = curr.o ;
+41
 42            for( int i=0 ; i<4 ; i++ ){
 43                int newrow = row+nrow[i];
 44                int newcol = col+ncol[i];
