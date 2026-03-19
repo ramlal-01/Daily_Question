@@ -1,25 +1,20 @@
-// Last updated: 1/10/2025, 9:36:50 pm
-class Solution {
-    public int eraseOverlapIntervals(int[][] intervals) {
-        Arrays.sort( intervals , (a,b)-> Integer.compare( a[1] , b[1]));
-
-        int pS = intervals[0][0];
-        int pE = intervals[0][1];
-        int c = 0 ;
-        for( int i = 1 ; i< intervals.length ;i++){
-            int cS = intervals[i][0];
-            int cE = intervals[i][1];
-            if( cS < pE ){
-                c++;
-                intervals[i][0] = pS ;
-                intervals[i][1] = pE ;
-            }
-            else {
-                pS = cS ;
-                pE = cE ;
-            }
-        }
-
-        return c ;
-    }
-}
+// Last updated: 19/3/2026, 8:05:24 pm
+1class Solution {
+2    public int eraseOverlapIntervals(int[][] arr) {
+3        Arrays.sort( arr , (a,b)-> Integer.compare(a[1],b[1]) );
+4
+5        int pe = arr[0][1] ;
+6
+7        int c = 0 ;
+8        for( int i=1 ; i<arr.length ; i++ ){
+9            if( arr[i][0] < pe ){
+10                c++ ;
+11            }
+12            else{
+13                pe = arr[i][1] ;
+14            }
+15        }
+16
+17        return c ;
+18    }
+19}
