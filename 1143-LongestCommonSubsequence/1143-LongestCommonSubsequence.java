@@ -1,4 +1,4 @@
-// Last updated: 21/1/2026, 3:34:20 pm
+// Last updated: 26/3/2026, 11:16:34 pm
 1class Solution {
 2    public int longestCommonSubsequence(String text1, String text2) {
 3        int n = text1.length() ;
@@ -6,22 +6,17 @@
 5
 6        int dp[][] = new int[n+1][m+1] ;
 7
-8        for( int ele[] : dp ) Arrays.fill( ele , -1 );
-9
-10
-11        return helper( text1, text2 , n-1 , m-1 , dp );
-12    }
-13
-14    public int helper( String s1 , String s2 , int n , int m  , int[][] dp ){
-15        if( n<0 || m<0 ){
-16            return 0;
-17        }
-18
-19        if( dp[n][m]!=-1 ) return dp[n][m] ;
-20
-21        if( s1.charAt(n) == s2.charAt(m) ){
-22            return dp[n][m] = 1+ helper( s1 , s2 , n-1 , m-1 , dp);
-23        }
-24        return dp[n][m] = Math.max( helper( s1,s2,n-1,m , dp) , helper( s1,s2 , n , m-1 , dp) );
-25    }
-26}
+8        for( int i =1 ; i<=n ; i++){
+9            for( int j = 1 ; j<=m ; j++){
+10                if( text1.charAt(i-1)==( text2.charAt(j-1) ) ){
+11                    dp[i][j] = 1+dp[i-1][j-1];
+12                }
+13                else {
+14                    dp[i][j] = Math.max( dp[i-1][j] , dp[i][j-1] );
+15                }
+16
+17            }
+18        }
+19        return dp[n][m] ;
+20    }
+21}
