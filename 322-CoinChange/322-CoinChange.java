@@ -1,4 +1,4 @@
-// Last updated: 26/3/2026, 10:41:09 am
+// Last updated: 26/3/2026, 11:37:06 am
 1class Solution {
 2    public int coinChange(int[] nums, int sum) {
 3        int n = nums.length;
@@ -12,11 +12,11 @@
 11
 12        for (int i = 1; i <= n; i++) {
 13            for (int j = 0; j <= sum; j++) {
-14                
+14
 15                dp[i][j] = dp[i - 1][j];
 16
 17                if (nums[i - 1] <= j) {
-18                    dp[i][j] = Math.min(dp[i][j],
+18                    dp[i][j] = Math.min(dp[i-1][j],
 19                        1 + dp[i][j - nums[i - 1]]);
 20                }
 21            }
