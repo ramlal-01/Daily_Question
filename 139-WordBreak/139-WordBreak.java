@@ -1,4 +1,4 @@
-// Last updated: 27/3/2026, 11:01:57 pm
+// Last updated: 27/3/2026, 11:02:13 pm
 1class Solution {
 2    int count  = 0 ;
 3    public int countArrangement(int n) { 
