@@ -1,4 +1,4 @@
-// Last updated: 26/3/2026, 11:16:34 pm
+// Last updated: 30/3/2026, 11:44:24 am
 1class Solution {
 2    public int longestCommonSubsequence(String text1, String text2) {
 3        int n = text1.length() ;
@@ -14,9 +14,8 @@
 13                else {
 14                    dp[i][j] = Math.max( dp[i-1][j] , dp[i][j-1] );
 15                }
-16
-17            }
-18        }
-19        return dp[n][m] ;
-20    }
-21}
+16            }
+17        }
+18        return dp[n][m] ;
+19    }
+20}
