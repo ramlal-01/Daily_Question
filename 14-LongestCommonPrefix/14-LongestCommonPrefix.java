@@ -1,4 +1,4 @@
-// Last updated: 27/3/2026, 10:58:25 pm
+// Last updated: 2/4/2026, 10:50:25 pm
 1class Solution {
 2    public String longestCommonPrefix(String[] strs) {
 3        Arrays.sort(strs);
