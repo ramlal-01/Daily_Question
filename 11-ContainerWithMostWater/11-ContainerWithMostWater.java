@@ -1,20 +1,20 @@
-// Last updated: 31/3/2026, 9:49:13 pm
+// Last updated: 6/4/2026, 2:44:43 pm
 1class Solution {
-2    public int maxArea(int[] height) {
-3        int maxArea = 0;
-4        int left = 0;
-5        int right = height.length - 1;
-6
-7        while (left < right) {
-8            maxArea = Math.max(maxArea, (right - left) * Math.min(height[left], height[right]));
-9
-10            if (height[left] < height[right]) {
-11                left++;
-12            } else {
-13                right--;
-14            }
-15        }
+2    public int[] plusOne(int[] digits) {
+3        int n = digits.length ;
+4
+5        for( int i = n-1 ; i>=0 ; i-- ){
+6            if( digits[i]<9 ){
+7                digits[i]++;
+8                return digits ;
+9            }
+10            digits[i] = 0 ;
+11        }
+12
+13        int arr[] = new int[n+1] ;
+14
+15        arr[0] = 1 ;
 16
-17        return maxArea;        
+17        return arr ;
 18    }
 19}
