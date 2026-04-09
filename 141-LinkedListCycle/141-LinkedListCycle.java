@@ -1,4 +1,4 @@
-// Last updated: 9/4/2026, 3:30:36 pm
+// Last updated: 9/4/2026, 3:30:45 pm
 1/**
 2 * Definition for singly-linked list.
 3 * public class ListNode {
@@ -27,13 +27,13 @@
 26        while( !pq.isEmpty() ){
 27            ListNode curr = pq.poll() ;
 28
-29            System.out.println( curr.val ) ;
+29            // System.out.println( curr.val ) ;
 30
 31            ListNode nnode = new ListNode(curr.val ) ;
 32
 33            dummy.next = nnode ;
 34            dummy = dummy.next  ;
-35            
+35
 36            if( curr.next!=null ){
 37                pq.add( curr.next ) ;
 38            }
