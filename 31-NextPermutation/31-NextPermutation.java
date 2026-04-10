@@ -1,4 +1,4 @@
-// Last updated: 2/4/2026, 10:50:52 pm
+// Last updated: 10/4/2026, 11:42:06 pm
 1class Solution {
 2    public void nextPermutation(int[] nums) {
 3        int ind = -1 ;
