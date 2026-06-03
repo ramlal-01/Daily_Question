@@ -1,21 +1,22 @@
-// Last updated: 2/6/2026, 10:08:13 pm
+// Last updated: 3/6/2026, 11:12:57 pm
 1class Solution {
-2    public int earliestFinishTime(int[] startL, int[] durL, int[] startW, int[] durW) {
-3        int minL = 3000, minW = minL, res = minW;
-4        int n = startL.length;
-5        int m = startW.length;
-6
-7        for (int i = 0; i < n; i++)
-8            minL = Math.min(minL, startL[i] + durL[i]);
-9
-10        for (int i = 0; i < m; i++) {
-11            minW = Math.min(minW, startW[i] + durW[i]);
-12            res = Math.min(res, Math.max(minL, startW[i]) + durW[i]);
+2    public int minimumCost(int[] cost) {
+3        if(cost.length==1) return cost[0];
+4        if(cost.length==2) return cost[0]+cost[1];
+5        Arrays.sort(cost);
+6        int left=0,right=cost.length-1;
+7        while(left<right){
+8            int temp=cost[left];
+9            cost[left]=cost[right];
+10            cost[right]=temp;
+11            left++;
+12            right--;
 13        }
-14
-15        for (int i = 0; i < n; i++)
-16            res = Math.min(res, Math.max(minW, startL[i]) + durL[i]);
-17
-18        return res;
-19    }
-20}
+14        int ans=0;
+15        for(int i=0;i<cost.length;i++){
+16            if((i+1)%3==0) continue;
+17            ans+=cost[i];
+18        }
+19        return ans;
+20    }
+21}
