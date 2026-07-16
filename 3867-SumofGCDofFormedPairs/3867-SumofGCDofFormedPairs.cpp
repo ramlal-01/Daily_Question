@@ -1,39 +1,34 @@
-// Last updated: 16/7/2026, 9:48:24 pm
+// Last updated: 16/7/2026, 11:19:38 pm
 1class Solution {
 2public:
-3    long long gcdSum(vector<int>& nums) {
-4        int n = nums.size() ;
-5        vector<int> pre(n) ; 
-6        int i  = 0 ;
-7        int maxi = INT_MIN;
-8        for( int ele : nums ){
-9            maxi = max(ele,maxi) ;
-10            pre[i++] = gcd(ele,maxi) ;
-11        }
+3    vector<int> sequentialDigits(int low, int high) {
+4        vector<int> ans;
+5
+6        int len1 = to_string(low).size();
+7        int len2 = to_string(high).size();
+8
+9        for (int len = len1; len <= len2; len++) {
+10
+11            for (int start = 1; start <= 9; start++) {
 12
-13        sort( pre.begin(),pre.end() );
-14
-15        long long res = 0 ;
-16
-17        int l = 0 ;
-18        int r = n-1 ;
-19
-20        while(l<r) {
-21            res+=gcd( pre[l],pre[r] ) ;
-22            l++;
-23            r--;
-24        }
+13                string s = "";
+14                int cur = start;
+15
+16                while (s.size() < len && cur <= 9) {
+17                    s += to_string(cur);
+18                    cur++;
+19                }
+20
+21                if (s.size() != len)
+22                    continue;
+23
+24                int num = stoi(s);
 25
-26        return res ;
-27    }
-28    int gcd(int a, int b) {
-29        while (b != 0) {
-30            int rem = a % b;
-31            a = b;
-32            b = rem;
-33        }
-34        return a;
-35    }
-36};
-37
-38
+26                if (num >= low && num <= high)
+27                    ans.push_back(num);
+28            }
+29        }
+30
+31        return ans;
+32    }
+33};
