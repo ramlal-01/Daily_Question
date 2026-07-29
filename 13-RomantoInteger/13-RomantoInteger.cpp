@@ -1,4 +1,4 @@
-// Last updated: 29/7/2026, 10:38:30 pm
+// Last updated: 29/7/2026, 10:42:00 pm
 1class Solution {
 2public:
 3    int romanToInt(string s) {
@@ -15,7 +15,7 @@
 14            else {
 15                ans = ans + curr ;
 16            }
-17            cout << ans << " " ;
+17           
 18            prev = curr ;
 19        }
 20        return ans ;
