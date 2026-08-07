@@ -1,30 +1,23 @@
-// Last updated: 27/9/2025, 3:35:23 pm
-class Solution {
-    public int findPeakElement(int[] nums) {
-        int low = 1 ;
-        int high = nums.length - 2;
-
-        if( nums.length ==1 ) return 0;
-        
-        if( nums[0]>nums[1]) return 0; 
-
-        if( nums[nums.length-1] > nums[nums.length-2]) return nums.length-1 ; 
-        
-
-
-        while( low<=high){
-            int mid= low + (high-low)/2 ;
-
-            if( nums[mid]>nums[mid-1] && nums[mid]> nums[mid+1] ){
-                return mid;
-            }
-
-            else if ( nums[mid+1] > nums[mid] ){
-                low = mid+1 ;
-            }
-            else high = mid-1 ;
-        }
-
-        return -1 ;
-    }
-}
+// Last updated: 7/8/2026, 2:30:08 pm
+1class Solution {
+2    public int findPeakElement(int[] nums) {
+3        int n = nums.length ; 
+4        int low = 0 ;
+5        int high = n-1 ;
+6          
+7        while( low < high ){
+8            int mid = low + (high-low)/2 ;
+9
+10    
+11            
+12
+13            if( nums[mid+1]>nums[mid] ){
+14                low = mid+1 ;
+15            }
+16            else {
+17                high = mid ;
+18            }
+19        }
+20        return low ;
+21    }
+22}
