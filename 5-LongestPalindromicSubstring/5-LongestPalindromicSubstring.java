@@ -1,4 +1,4 @@
-// Last updated: 25/2/2026, 8:34:25 pm
+// Last updated: 8/8/2026, 11:21:00 pm
 1class Solution {
 2    public int valid( String s , int i , int j , int[][] map){
 3        if( i>=j){
