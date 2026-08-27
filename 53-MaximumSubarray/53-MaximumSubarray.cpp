@@ -1,4 +1,4 @@
-// Last updated: 19/7/2026, 9:49:30 pm
+// Last updated: 28/8/2026, 12:16:19 am
 1class Solution {
 2public:
 3    int maxSubArray(vector<int>& nums) {
