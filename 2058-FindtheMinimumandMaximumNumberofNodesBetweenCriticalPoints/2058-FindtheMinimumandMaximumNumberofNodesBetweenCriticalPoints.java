@@ -1,4 +1,4 @@
-// Last updated: 1/9/2026, 12:45:14 am
+// Last updated: 1/9/2026, 12:45:28 am
 1/**
 2 * Definition for singly-linked list.
 3 * public class ListNode {
@@ -50,7 +50,7 @@
 49        }
 50        
 51        if( a==Integer.MAX_VALUE ) a= -1 ;
-52        System.out.println(list) ;
+52        // System.out.println(list) ;
 53        return new int[]{a,b} ;
 54    }
 55}
