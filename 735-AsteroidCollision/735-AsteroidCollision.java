@@ -1,4 +1,4 @@
-// Last updated: 23/1/2026, 7:48:16 am
+// Last updated: 12/10/2026, 3:40:10 pm
 1class Solution {
 2    public int[] asteroidCollision(int[] asteroids) {
 3        Stack<Integer> st = new Stack<>();
