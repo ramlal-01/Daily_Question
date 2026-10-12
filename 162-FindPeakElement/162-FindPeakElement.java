@@ -1,4 +1,4 @@
-// Last updated: 7/8/2026, 2:30:08 pm
+// Last updated: 12/10/2026, 10:59:41 pm
 1class Solution {
 2    public int findPeakElement(int[] nums) {
 3        int n = nums.length ; 
@@ -8,16 +8,13 @@
 7        while( low < high ){
 8            int mid = low + (high-low)/2 ;
 9
-10    
-11            
-12
-13            if( nums[mid+1]>nums[mid] ){
-14                low = mid+1 ;
+10            if( nums[mid+1]>nums[mid] ){
+11                low = mid+1 ;
+12            }
+13            else {
+14                high = mid ;
 15            }
-16            else {
-17                high = mid ;
-18            }
-19        }
-20        return low ;
-21    }
-22}
+16        }
+17        return low ;
+18    }
+19}
