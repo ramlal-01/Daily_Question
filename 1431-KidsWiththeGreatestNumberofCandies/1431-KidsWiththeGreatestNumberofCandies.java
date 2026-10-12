@@ -1,4 +1,4 @@
-// Last updated: 12/10/2026, 11:18:16 am
+// Last updated: 12/10/2026, 11:19:16 am
 1class Solution {
 2    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
 3        ArrayList<Boolean> res = new ArrayList<>();
