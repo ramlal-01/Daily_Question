@@ -1,4 +1,4 @@
-// Last updated: 10/3/2026, 4:51:35 pm
+// Last updated: 12/10/2026, 12:38:56 pm
 1class Solution {
 2    public int compress(char[] chars) {
 3        int n = chars.length ;
